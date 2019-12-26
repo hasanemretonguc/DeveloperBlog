@@ -1,0 +1,42 @@
+<%- include("../partials/header") %>
+
+<article class="blog-post px-3 py-5 p-md-5">
+  <div class="container">
+    <header class="blog-post-header">
+      <h2 class="title mb-2"><%- post.title %></h2>
+      <div class="meta mb-3">
+        <span class="date"><%- post.created %></span>
+      </div>
+    </header>
+
+    <div class="blog-post-body">
+      <%- post.content %>
+    </div>
+
+    <!-- <div class="blog-comments-section">
+      <div id="disqus_thread"></div>
+      <script>
+        (function() {
+          // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+          var d = document,
+            s = d.createElement("script");
+
+          // IMPORTANT: Replace 3wmthemes with your forum shortname!
+          s.src = "https://3wmthemes.disqus.com/embed.js";
+
+          s.setAttribute("data-timestamp", +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>
+        Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript" rel="nofollow">
+          comments powered by Disqus.
+        </a>
+      </noscript>
+    </div> -->
+    
+  </div>
+</article>
+
+<%- include("../partials/footer") %>

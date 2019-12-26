@@ -1,0 +1,24 @@
+<%- include("partials/header") %> <% posts.forEach(element => { %>
+<div class="item mb-5">
+  <div class="media">
+    <img
+      class="mr-3 img-fluid post-thumb d-none d-md-flex"
+      src="<%= element.thumbnail %>"
+      alt="image"
+    />
+    <div class="media-body">
+      <h3 class="title mb-1">
+        <a href="post/<%= element.id %>"><%= element.title %></a>
+      </h3>
+      <div class="meta mb-1">
+        <span class="date"><%= element.created %></span>
+      </div>
+      <div class="intro">
+        <%= element.description %>
+      </div>
+      <a class="more-link" href="post/<%= element.id %>">Okumaya devam.. &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<% }) %> <%- include("partials/footer") %>
