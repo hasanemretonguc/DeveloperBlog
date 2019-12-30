@@ -33,10 +33,12 @@ var svPort = process.env.PORT || 3000;
 
 app.use(methodOverride("_method"));
 app.use(flash());
+app.use(express.json());
 app.use(bodyParse.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public", staticOptions));
 app.use(express.static(__dirname + "/views/scripts"));
 app.set("view engine", "ejs");
+
 
 app.use(
   require("express-session")({
