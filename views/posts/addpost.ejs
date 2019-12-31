@@ -1,6 +1,8 @@
 <%- include("../partials/header") %>
 <link id="theme-style" type="text/css" rel="stylesheet" href="/assets/css/thumbnailanim.css">
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<!-- BAGLANMIYOR DUZELTILECEK -->
+<script type="text/javascript" src="/public/assets/js/imageviewer.js"></script>
 
 <section id="addPostForm">
   <div class="container">
@@ -12,7 +14,7 @@
             class="img-responsive">
           <input type="hidden" name="thumbnail" id="image_location" value="/assets/images/blog/blog-post-thumb-1.jpg" />
           <div class="overlay">
-            <h2 class="btn btn-primary">SEC</h2>
+            <h2 class="btn btn-primary popup-link" id="thumbSelect">SEC</h2>
           </div>
         </div>
 
@@ -24,6 +26,15 @@
           <input class="form-control" name="description" type="text" value="Gelecekten gelen dost canlisi bir robot" />
         </div>
 
+      </div>
+      
+      <!-- TASARIM DUZENLENECEK!!!-->
+      <div id="imgPlate" class="row">
+        <div class="col" >
+          <% pictures.forEach((element) => { %>
+            <img src="/assets/images/blog/<%= element %>" alt="">
+          <% }) %>
+        </div>
       </div>
 
       <div class="row">

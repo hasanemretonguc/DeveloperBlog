@@ -5,13 +5,12 @@ const express = require('express'),
 const Post = require('../models/post');
 
 // BLOG EKLEME SAYFASINI AC
-router.get('/addpost', tools.currentBlogger, (req, res) => {
+router.get('/addpost', tools.currentBlogger, tools.Pictures,(req, res) => {
 	res.render('posts/addpost');
 });
 
 // BLOG EKLE                                  BU CALISIYOR AMA BURDA OLMAMASI GEREKIYOR
 router.post('/addpost', tools.currentBlogger, express.urlencoded({ extended: true }), (req, res) => {
-	
 	var title = req.body.title;
 	var description = req.body.description;
 	var thumbnail = req.body.thumbnail;
@@ -36,7 +35,6 @@ router.post('/addpost', tools.currentBlogger, express.urlencoded({ extended: tru
 			res.redirect('/');
 		}
 	});
-
 });
 
 // BLOG GOSTER
