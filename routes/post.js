@@ -5,24 +5,24 @@ const express = require('express'),
 const Post = require('../models/post');
 
 // BLOG EKLEME SAYFASINI AC
-router.get('/newpost', tools.currentBlogger, (req, res) => {
+router.get('/addpost', tools.currentBlogger, (req, res) => {
 	res.render('posts/addpost');
 });
 
-// BLOG EKLE                                  // BU CALISIYOR AMA BURDA OLMAMASI GEREKIYOR
+// BLOG EKLE                                  BU CALISIYOR AMA BURDA OLMAMASI GEREKIYOR
 router.post('/addpost', tools.currentBlogger, express.urlencoded({ extended: true }), (req, res) => {
-  console.log(req.body);
-  
+	
 	var title = req.body.title;
-  var description = req.body.description;
-  var thumbnail_img = req.body.thumbnail;
-  var content = req.body.richText; // Bunun adı kaldı böyle kullandığım eklentidede bu şekilde o yüzden değiştirmedim
-  
-  var author = { id: res.locals.blogger.id, username: res.locals.blogger };
-  
+	var description = req.body.description;
+	var thumbnail = req.body.thumbnail;
+	var content = req.body.richText; // Bunun adı kaldı böyle kullandığım eklentidede bu şekilde o yüzden değiştirmedim
+	var author = { id: res.locals.blogger.id, username: res.locals.blogger };
+
+	var { title, description, thumbnail, richText: content } = req.body;
+
 	var createdPost = {
 		title: title,
-		thumbnail: thumbnail_img,
+		thumbnail: thumbnail,
 		description: description,
 		content: content,
 		author: author
@@ -30,13 +30,13 @@ router.post('/addpost', tools.currentBlogger, express.urlencoded({ extended: tru
 
 	Post.create(createdPost, (err, newPost) => {
 		if (err) {
-      console.log(err);
-      res.redirect("/");
+			console.log(err);
+			res.redirect('/');
 		} else {
-      res.redirect("/");
+			res.redirect('/');
 		}
-  });
-  
+	});
+
 });
 
 // BLOG GOSTER

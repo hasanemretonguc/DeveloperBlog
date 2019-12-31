@@ -36,9 +36,9 @@ Install Dependencies
 
 First of all, we have to install some dependencies in order to proceed,
 
-apt-get install build-essential git fontconfig libpng-dev ruby ruby-dev
+apt install build-essential git fontconfig libpng-dev ruby ruby-dev
 
-gem install sass
+apt install sass
 
 Install MongoDB
 
@@ -52,7 +52,7 @@ echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb
 
 Now you can easily install MongoDB with the following command:
 
-apt-get install mongodb-org
+apt install mongodb-org
 
 After the installation process is finished you can start and enable the MongoDB service with the commands below:
 
