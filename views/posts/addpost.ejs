@@ -1,8 +1,7 @@
 <%- include("../partials/header") %>
 <link id="theme-style" type="text/css" rel="stylesheet" href="/assets/css/thumbnailanim.css">
+<link rel="stylesheet" href="/assets/css/imageviewer.css">
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-<!-- BAGLANMIYOR DUZELTILECEK -->
-<script type="text/javascript" src="/public/assets/js/imageviewer.js"></script>
 
 <section id="addPostForm">
   <div class="container">
@@ -10,11 +9,10 @@
       <div class="row">
 
         ​<div class="form-group hovereffect col-lg-3 col-md-3 col-sm">
-          <img src="/assets/images/blog/blog-post-thumb-1.jpg" alt="" name="thumbnail_img"
-            class="img-responsive">
+          <img src="/assets/images/blog/blog-post-thumb-1.jpg" id="image" name="thumbnail_img" class="img-responsive">
           <input type="hidden" name="thumbnail" id="image_location" value="/assets/images/blog/blog-post-thumb-1.jpg" />
           <div class="overlay">
-            <h2 class="btn btn-primary popup-link" id="thumbSelect">SEC</h2>
+            <h2 class="btn btn-primary ml-5" id="thumbSelect">SEC</h2>
           </div>
         </div>
 
@@ -27,14 +25,14 @@
         </div>
 
       </div>
-      
-      <!-- TASARIM DUZENLENECEK!!!-->
-      <div id="imgPlate" class="row">
-        <div class="col" >
-          <% pictures.forEach((element) => { %>
-            <img src="/assets/images/blog/<%= element %>" alt="">
-          <% }) %>
+
+      <div id="imgPlate" class="row" style="display: none;">
+        <% pictures.shift(); %>
+        <% pictures.forEach((element) => { %>
+        <div class="col-lg-4 col-md-4 col-6">
+          <img class="img-fluid img-thumbnail d-block mb-4 thumbslct" name="imgs" src="/assets/images/blog/<%= element %>" alt="">
         </div>
+        <% }) %>
       </div>
 
       <div class="row">
@@ -53,4 +51,5 @@
   </div>
 </section>
 
+<script defer type="text/javascript" src="/assets/js/imageviewer.js"></script>
 <%- include("../partials/footer") %>
