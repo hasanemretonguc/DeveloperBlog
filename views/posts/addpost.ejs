@@ -5,6 +5,21 @@
 
 <section id="addPostForm">
   <div class="container">
+
+    <div class="row" id="imgUpload" style="display: none;">
+      <form action="/post/upload" method="post" enctype="multipart/form-data" class="col ml-2">
+      <div class="input-group mb-4 border border-primary pr-2 pl-2">
+        <div class="custom-file">
+          <input type="file" accept="image/*" name="image">
+        </div>
+        <div class="input-group-append">
+          <input type="submit" value="upload" class="mt-2 mb-2" id="imageUploadBtn" onclick="return confirm('Sayfa yenilecek emin misin?')">
+        </div>
+      </div>
+      </form>
+    </div>
+
+
     <form action="/post/addpost" method="post">
       <div class="row">
 
@@ -12,7 +27,8 @@
           <img src="/assets/images/blog/blog-post-thumb-1.jpg" id="image" name="thumbnail_img" class="img-responsive">
           <input type="hidden" name="thumbnail" id="image_location" value="/assets/images/blog/blog-post-thumb-1.jpg" />
           <div class="overlay">
-            <h2 class="btn btn-primary ml-5" id="thumbSelect">SEC</h2>
+            <h2 class="btn btn-primary ml-2" id="thumbSelect">SEC</h2>
+            <h2 class="btn btn-primary ml-2" id="thumbUpload">Yükle</h2>
           </div>
         </div>
 
@@ -30,7 +46,8 @@
         <% pictures.shift(); %>
         <% pictures.forEach((element) => { %>
         <div class="col-lg-4 col-md-4 col-6">
-          <img class="img-fluid img-thumbnail d-block mb-4 thumbslct" name="imgs" src="/assets/images/blog/<%= element %>" alt="">
+          <img class="img-fluid img-thumbnail d-block mb-4 thumbslct" name="imgs"
+            src="/assets/images/blog/<%= element %>" alt="">
         </div>
         <% }) %>
       </div>

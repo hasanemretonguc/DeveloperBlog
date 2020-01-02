@@ -5,6 +5,7 @@ const Blogger = require('../models/blogger'),
 var tools = {};
 
 const directoryPath = path.join(__dirname, '../public/assets/images/blog/');
+
 var blogger;
 //VERITABANI ACILANA KADAR BEKLEYIP ACILDIKTAN SONRA BLOGGERI CEKIYOR
 setTimeout(waitDBConnection, 500);
@@ -32,8 +33,11 @@ function cachePictures() {
   return fs.readdirSync(directoryPath);
 }
 
+tools.imagesPath = directoryPath;
+
 tools.Pictures = (req, res, next) => {
   res.locals.pictures = cachePictures();
+  res.locals.picLocal = directoryPath;
   next();
 }
 

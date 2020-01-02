@@ -1,16 +1,30 @@
 const express = require('express'),
 	tools = require('../middleware/tools'),
+	multer = require('multer'),
+	path = require('path');
 	router = express.Router();
 
 const Post = require('../models/post');
 
+// DOSYA YUKLEMEK ICIN GEREKLI AYARLAR
+var storage = multer.diskStorage({
+	destination: function(req, file, cb) {
+		cb(null, tools.imagesPath); // DOSYANIN YUKLENECEGI KONUM
+	},
+	filename: function(req, file, cb) {
+		cb(null, 'upload_' + file.fieldname + '-' + Date.now() + path.extname(file.originalname)); // YUKLENEN DOSYANIN ADI 
+	}
+});
+var upload = multer({ storage: storage });
+//--------------------------------------
+
 // BLOG EKLEME SAYFASINI AC
-router.get('/addpost', tools.currentBlogger, tools.Pictures,(req, res) => {
+router.get('/addpost', tools.currentBlogger, tools.Pictures, (req, res) => {
 	res.render('posts/addpost');
 });
 
 // BLOG EKLE                                  BU CALISIYOR AMA BURDA OLMAMASI GEREKIYOR
-router.post('/addpost', tools.currentBlogger, express.urlencoded({ extended: true }), (req, res) => {
+router.post('/addpost', express.urlencoded({ extended: true }), (req, res) => {
 	var title = req.body.title;
 	var description = req.body.description;
 	var thumbnail = req.body.thumbnail;
@@ -35,6 +49,11 @@ router.post('/addpost', tools.currentBlogger, express.urlencoded({ extended: tru
 			res.redirect('/');
 		}
 	});
+});
+
+// BLOG EKLEMEDE RESIM EKLE
+router.post('/upload', upload.single('image'), (req,res) => {
+	res.redirect(req.get('referer'));
 });
 
 // BLOG GOSTER
