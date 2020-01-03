@@ -6,7 +6,7 @@ const express = require('express'),
 
 const Post = require('../models/post');
 
-// DOSYA YUKLEMEK ICIN GEREKLI AYARLAR
+//#region DOSYA YUKLEMEK ICIN GEREKLI AYARLAR 
 var storage = multer.diskStorage({
 	destination: function(req, file, cb) {
 		cb(null, tools.imagesPath); // DOSYANIN YUKLENECEGI KONUM
@@ -16,7 +16,7 @@ var storage = multer.diskStorage({
 	}
 });
 var upload = multer({ storage: storage });
-//--------------------------------------
+//#endregion
 
 // BLOG EKLEME SAYFASINI AC
 router.get('/addpost', tools.currentBlogger, tools.Pictures, (req, res) => {
@@ -29,9 +29,9 @@ router.post('/addpost', express.urlencoded({ extended: true }), (req, res) => {
 	var description = req.body.description;
 	var thumbnail = req.body.thumbnail;
 	var content = req.body.richText; // Bunun adı kaldı böyle kullandığım eklentidede bu şekilde o yüzden değiştirmedim
-	var author = { id: res.locals.blogger.id, username: res.locals.blogger };
+	var author = res.locals.blogger;
 
-	var { title, description, thumbnail, richText: content } = req.body;
+	//var { title, description, thumbnail, richText: content } = req.body;
 
 	var createdPost = {
 		title: title,

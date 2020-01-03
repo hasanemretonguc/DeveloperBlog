@@ -11,8 +11,7 @@ var postSchema = new mongoose.Schema({
         id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Blogger"
-        },
-        username: String
+        }
     },
     comments: [
         {
