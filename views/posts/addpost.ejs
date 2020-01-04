@@ -59,7 +59,10 @@
         <div class="form-group col-12" id="editor">
           <textarea name="richText"></textarea>
           <script>
-            CKEDITOR.replace('richText');
+            CKEDITOR.replace('richText', {
+              language: 'tr',
+              filebrowserUploadUrl: '/post/uploadck'
+            });
           </script>
         </div>
         <br>
