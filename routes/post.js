@@ -2,10 +2,8 @@ const express = require("express"),
   tools = require("../middleware/tools"),
   multer = require("multer"),
   path = require("path"),
-  multipart = require("connect-multiparty"),
   router = express.Router();
 
-var multipartMiddleware = multipart();
 const Post = require("../models/post");
 
 //#region DOSYA YUKLEMEK ICIN GEREKLI AYARLAR
