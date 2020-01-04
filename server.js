@@ -36,6 +36,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 app.use(express.static(__dirname + "/public", staticOptions));
 app.use(express.static(__dirname + "/views/scripts"));
+app.use(express.static(__dirname + "/node_modules"));
 app.set("view engine", "ejs");
 app.use(express.json());
 
@@ -79,5 +80,4 @@ mongoose.connection.once("open", () => {
   // BOS VERI
   const seedDB = require("./seeds");
   seedDB();
-
 });
