@@ -30,6 +30,7 @@ const dbOptions = {
 
 var dbURL = process.env.BLOGDBURL || "mongodb://localhost/devblog";
 var svPort = process.env.PORT || 3000;
+//SET
 
 app.use(bodyParse.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
