@@ -28,7 +28,7 @@ const dbOptions = {
   useNewUrlParser: true
 };
 
-var dbURL = process.env.DATABASEURL || "mongodb://localhost/devblog";
+var dbURL = process.env.BLOGDBURL || "mongodb://localhost/devblog";
 var svPort = process.env.PORT || 3000;
 
 app.use(bodyParse.urlencoded({ extended: true }));
