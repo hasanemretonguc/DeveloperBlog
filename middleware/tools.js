@@ -46,4 +46,8 @@ tools.currentBlogger = (req, res, next) => {
   next();
 };
 
+tools.forceBlogger = (req, res) => {
+  cacheBlogger();
+}
+
 module.exports = tools;

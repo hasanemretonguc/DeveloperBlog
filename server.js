@@ -70,6 +70,7 @@ mongoose
     app.listen(svPort, () => {
       console.log("Veritabanina Aktif!");
       console.log("Sunucu Aktif!");
+      tools.forceBlogger();
     })
   )
   .catch(err => {

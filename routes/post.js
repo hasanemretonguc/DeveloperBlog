@@ -4,6 +4,7 @@ const express = require("express"),
   path = require("path"),
   router = express.Router();
 
+
 const Post = require("../models/post");
 
 //#region DOSYA YUKLEMEK ICIN GEREKLI AYARLAR
@@ -62,10 +63,34 @@ router.post("/addpost", express.urlencoded({ extended: true }), (req, res) => {
 router.post("/upload", upload.single("image"), (req, res) => {
   res.redirect(req.get("referer"));
 });
-// CKEDITOR DOSYA YUKLEME
-router.post("/uploadck", upload.single("image"), tools.Pictures, function(req, res) {
-	
+
+// #region CKEDITOR DOSYA YUKLEME
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+router.post("/uploadck", tools.Pictures, multipartMiddleware, function(req, res) {
+	var fs = require('fs');
+
+    fs.readFile(req.files.upload.path, function (err, data) {
+        var newPath = tools.imagesPath + req.files.upload.name;
+        fs.writeFile(newPath, data, function (err) {
+            if (err) console.log({err: err});
+            else {
+                html = "";
+                html += "<script type='text/javascript'>";
+                html += "    var funcNum = " + req.query.CKEditorFuncNum + ";";
+                html += "    var url     = \"/assets/images/blog/" + req.files.upload.name + "\";";
+                html += "    var message = \"Resim basariyla yuklendi!\";";
+                html += "";
+                html += "    window.parent.CKEDITOR.tools.callFunction(funcNum, url, message);";
+                html += "</script>";
+
+                res.send(html);
+            }
+        });
+    });
 });
+// #endregion
+
 // BLOG GOSTER
 router.get("/:id", tools.currentBlogger, (req, res) => {
   Post.findById(req.params.id, (err, foundPost) => {
