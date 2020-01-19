@@ -1,0 +1,38 @@
+<%- include("./partials/header") %>
+
+<script src="https://cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>
+<!-- <script src="/ckeditor4/ckeditor.js"></script> -->
+
+<section id="addPostForm">
+  <div class="container">
+
+    <form action="/about" method="post">
+      <div class="row">
+
+        <div class="form-group col">
+          <h1>Hakkimda: </label>
+         </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="form-group col" id="editor">
+          <textarea name="about[content]"><%= about.content %></textarea>
+          <script>
+            CKEDITOR.replace('about[content]', {
+              language: 'tr',
+              filebrowserUploadUrl: '/post/uploadck'
+            });
+          </script>
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary col-12">Kaydet</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script defer type="text/javascript" src="/assets/js/imageviewer.js"></script>
+<%- include("./partials/footer") %>

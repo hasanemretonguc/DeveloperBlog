@@ -1,0 +1,78 @@
+<%- include("partials/header") %>
+
+<link id="theme-style" type="text/css" rel="stylesheet" href="/assets/css/thumbnailanim.css">
+<link rel="stylesheet" href="/assets/css/imageviewer.css">
+
+<section id="addPostForm">
+  <div class="container">
+    <div class="row" id="imgUpload" style="display: none;">
+      <form action="/post/upload" method="post" enctype="multipart/form-data" class="col ml-2">
+        <div class="input-group mb-4 border border-primary pr-2 pl-2">
+          <div class="custom-file">
+            <input type="file" accept="image/*" name="image">
+          </div>
+          <div class="input-group-append">
+            <input type="submit" value="upload" class="mt-2 mb-2" id="imageUploadBtn"
+              onclick="return confirm('Sayfa yenilecek emin misin?')">
+          </div>
+        </div>
+      </form>
+    </div>
+    <form action="/profile" method="POST">
+
+      <div class="row">
+        ​​<div class="form-group hovereffect col-lg-3 col-md-3 col-sm">
+          <img src="<%= blogger.picture %>" id="image" name="picture_img" class="img-responsive">
+          <input type="hidden" name="picture" id="image_location" value="<%= blogger.picture %>" />
+          <div class="overlay">
+            <h2 class="btn btn-primary ml-2" id="thumbSelect">SEC</h2>
+            <h2 class="btn btn-primary ml-2" id="thumbUpload">Yükle</h2>
+          </div>
+        </div>
+        <div id="imgPlate" class="row" style="display: none;">
+          <% pictures.shift(); %>
+          <% pictures.forEach((element) => { %>
+          <div class="col-lg-4 col-md-4 col-6">
+            <img class="img-fluid img-thumbnail d-block mb-4 thumbslct" name="imgs"
+              src="/assets/images/blog/<%= element %>" alt="">
+          </div>
+          <% }) %>
+        </div>
+        <div class="form-group col-lg-9 col-md-9 col-sm">
+          <label for="name[first]">Ad: </label>
+          <input class="form-control" name="name[first]" type="text" value="<%= blogger.name.first %>" />
+
+          <label for="name[last]">Soyad: </label>
+          <input class="form-control" name="name[last]" type="text" value="<%= blogger.name.last %>" />
+
+        </div>
+        <div class="form-group col-12">
+          <label for="username">Kullanici Adi: </label>
+          <input class="form-control" name="username" type="text" value="<%= blogger.username %>" />
+          <label for="description">Aciklama: </label>
+          <input class="form-control" name="description" type="text" value="<%= blogger.description %>" />
+          <label for="social[twitter]">Twitter: </label>
+          <input class="form-control" name="social[twitter]" type="text" value="<%= blogger.social.twitter %>" />
+          <label for="social[linkedln]">Linkedln: </label>
+          <input class="form-control" name="social[linkedln]" type="text" value="<%= blogger.social.linkedln %>" />
+          <label for="social[github]">Github: </label>
+          <input class="form-control" name="social[github]" type="text" value="<%= blogger.social.github %>" />
+          <label for="social[Stackoverflow]">Stackoverflow: </label>
+          <input class="form-control" name="social[Stackoverflow]" type="text" value="<%= blogger.social.Stackoverflow %>" />
+          <label for="mail">Mail: </label>
+          <input class="form-control" name="mail" type="text" value="<%= blogger.mail %>" />
+          
+        </div>
+
+
+        <button type="submit" class="btn btn-primary col-12">Kaydet</button>
+      </div>
+
+    </form>
+
+
+  </div>
+</section>
+
+<script defer type="text/javascript" src="/assets/js/imageviewer.js"></script>
+<%- include("partials/footer") %>

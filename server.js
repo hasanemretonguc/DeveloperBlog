@@ -25,14 +25,14 @@ const staticOptions = {
 const dbOptions = {
   keepAlive: 1,
   useUnifiedTopology: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useFindAndModify: false
 };
 
 var dbURL = process.env.BLOGDBURL || "mongodb://localhost/devblog";
 var svPort = process.env.PORT || 3000;
 //SET
 
-app.use(bodyParse.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(express.static(__dirname + "/public", staticOptions));
@@ -77,9 +77,9 @@ mongoose
     console.log("VERITABANINA ULASILAMIYOR!!!!");
   });
 
-mongoose.connection.once("open", () => {
-  // DEPLOY EDERKEN KALDIR
-  // BOS VERI
-  const seedDB = require("./seeds");
-  seedDB();
-});
+// mongoose.connection.once("open", () => {
+//   // DEPLOY EDERKEN KALDIR
+//   // BOS VERI
+//   const seedDB = require("./seeds");
+//   seedDB();
+// });

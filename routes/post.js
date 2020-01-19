@@ -4,7 +4,6 @@ const express = require("express"),
   path = require("path"),
   router = express.Router();
 
-
 const Post = require("../models/post");
 
 //#region DOSYA YUKLEMEK ICIN GEREKLI AYARLAR
@@ -101,6 +100,38 @@ router.get("/:id", tools.currentBlogger, (req, res) => {
       );
     res.render("posts/post", { post: foundPost });
   });
+});
+
+// #region POST DUZENLE
+router.get("/:id/edit", tools.currentBlogger, tools.Pictures, (req, res) => {
+  Post.findById(req.params.id, (err, foundPost) => {
+    if (err)
+      console.log(
+        req.params.id +
+          " kimligine sahip posta erisilmeye calisildi. Bu kimlige sahip post bulunamadi!"
+      );
+    res.render("posts/editpost", { post: foundPost });
+  });
+});
+
+router.post("/:id/edit", express.urlencoded({ extended: true }), (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, req.body.post,(err, result) => {
+    if(err) console.log(err);
+    else {
+      res.redirect("/post/"+req.params.id);
+    }
+  });
+});
+// #endregion 
+
+router.get("/:id/delete", (req, res) => {
+  Post.findByIdAndRemove(req.params.id
+    ).then(master => {
+    })
+    .catch(err => {
+      console.log(err);
+  });
+  res.redirect("/");
 });
 
 module.exports = router;

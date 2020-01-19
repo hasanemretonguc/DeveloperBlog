@@ -50,29 +50,13 @@
 
 .hovereffect h2 {
     text-transform: uppercase;
-    color: #fff;
     text-align: center;
     position: relative;
-    font-size: 17px;
-    padding: 10px;
+    font-size: 15px;
+	padding: 5px;
     background: rgba(0, 0, 0, 0.6);
-	float: left;
-	margin: 0px;
+	margin-right: 5px;
 	display: inline-block;
-}
-
-.hovereffect a.info {
-    display: inline-block;
-    text-decoration: none;
-	padding: 7px 14px;
-    text-transform: uppercase;
-	color: #fff;
-	border: 1px solid #fff;
-	margin: 50px 0 0 0;
-	background-color: transparent;
-}
-.hovereffect a.info:hover {
-    box-shadow: 0 0 5px #fff;
 }
 
 
@@ -99,7 +83,6 @@
 .hovereffect p.icon-links a span:before {
 	display: inline-block;
 	padding: 8px 10px;
-	speak: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

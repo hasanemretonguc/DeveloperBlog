@@ -1,6 +1,7 @@
 var mongoose = require("mongoose"),
   //Post = require("./models/post"),
-  Blogger = require("./models/blogger");
+  Blogger = require("./models/blogger"),
+  About = require("./models/about"),
 Post = require("./models/post");
 
 var myblogger = {
@@ -21,10 +22,46 @@ var myblogger = {
   mail: "hasanemretonguc@gmail.com"
 };
 
+var myabout = {
+  content: "Buraya content gelecek babbba"
+};
+
 var posts = [
   {
     title: "Neden her gelistiricinin kendi blogu olmali?",
-    thumbnail: "assets/images/blog/blog-post-thumb-1.jpg",
+    thumbnail: "/assets/images/blog/blog-post-thumb-1.jpg",
+    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    content:
+      "<p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>",
+    author: myblogger
+  },
+  {
+    title: "Neden her gelistiricinin kendi blogu olmali?",
+    thumbnail: "/assets/images/blog/blog-post-thumb-1.jpg",
+    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    content:
+      "<p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>",
+    author: myblogger
+  },
+  {
+    title: "Neden her gelistiricinin kendi blogu olmali?",
+    thumbnail: "/assets/images/blog/blog-post-thumb-1.jpg",
+    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    content:
+      "<p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>",
+    author: myblogger
+  },
+  {
+    title: "Neden her gelistiricinin kendi blogu olmali?",
+    thumbnail: "/assets/images/blog/blog-post-thumb-1.jpg",
+    description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    content:
+      "<p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>",
+    author: myblogger
+  },
+  {
+    title: "Neden her gelistiricinin kendi blogu olmali?",
+    thumbnail: "/assets/images/blog/blog-post-thumb-1.jpg",
     description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     content:
       "<p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>",
@@ -32,7 +69,7 @@ var posts = [
   },
   {
     title: "Ne bilim?",
-    thumbnail: "assets/images/blog/blog-post-thumb-3.jpg",
+    thumbnail: "/assets/images/blog/blog-post-thumb-3.jpg",
     description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac.",
     content:
       "<h1> NICE </h1> <p>Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>",
@@ -40,7 +77,7 @@ var posts = [
   },
   {
     title: "Hakkımda",
-    thumbnail: "assets/images/blog/blog-post-thumb-3.jpg",
+    thumbnail: "/assets/images/blog/blog-post-thumb-3.jpg",
     description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac.",
     content: "",
     author: myblogger
@@ -64,6 +101,14 @@ function seedDB() {
         });
       });
       owner.save();
+    });
+  });
+  About.deleteMany({}, err => {
+    if (err) return console.log("Hakkimda silinemedi!");
+    About.create(myabout).then(master => {
+      console.log("Hakkimda Eklendi!");
+    }).catch(err => {
+      console.log("Hakkimda Eklenemedi!");
     });
   });
 }

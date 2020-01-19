@@ -3,7 +3,7 @@ const Blogger = require("../models/blogger"),
   fs = require("fs"),
   mongoose = require("mongoose");
 var tools = {};
-
+var welcome = true;
 const directoryPath = path.join(__dirname, "../public/assets/images/blog/");
 
 var blogger;
@@ -22,7 +22,10 @@ function cacheBlogger() {
   Blogger.findOne({})
     .then(master => {
       blogger = master;
-      console.log(blogger.name.first + " Hosgeldiniz");
+      if (blogger != null && welcome) {
+        console.log(master.name.first + " Hosgeldiniz");
+        welcome = false;
+      }
     })
     .catch(err => {
       console.log(err);
