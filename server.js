@@ -77,9 +77,9 @@ mongoose
     console.log("VERITABANINA ULASILAMIYOR!!!!");
   });
 
-// mongoose.connection.once("open", () => {
+ mongoose.connection.once("open", () => {
 //   // DEPLOY EDERKEN KALDIR
 //   // BOS VERI
-//   const seedDB = require("./seeds");
-//   seedDB();
-// });
+   const seedDB = require("./seeds");
+   seedDB();
+ });
