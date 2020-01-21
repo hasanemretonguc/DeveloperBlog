@@ -4,6 +4,8 @@ var mongoose = require("mongoose"),
   About = require("./models/about"),
 Post = require("./models/post");
 
+var ready = false;
+
 var myblogger = {
   name: {
     first: "Hasan Emre",
@@ -97,6 +99,7 @@ function seedDB() {
             if (err) return console.log("post eklenemedi!\n" + err);
             console.log("Post eklendi!");
             postSD.save();
+            ready = true;
           });
         });
       });
@@ -107,8 +110,10 @@ function seedDB() {
     if (err) return console.log("Hakkimda silinemedi!");
     About.create(myabout).then(master => {
       console.log("Hakkimda Eklendi!");
+      ready = true;
     }).catch(err => {
       console.log("Hakkimda Eklenemedi!");
+      ready = false;
     });
   });
 }

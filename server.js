@@ -70,16 +70,17 @@ mongoose
     app.listen(svPort, () => {
       console.log("Veritabanina Aktif!");
       console.log("Sunucu Aktif!");
-      tools.forceBlogger();
+      //tools.forceBlogger();
     })
   )
   .catch(err => {
     console.log("VERITABANINA ULASILAMIYOR!!!!");
   });
 
- mongoose.connection.once("open", () => {
-//   // DEPLOY EDERKEN KALDIR
-//   // BOS VERI
-   const seedDB = require("./seeds");
-   seedDB();
- });
+mongoose.connection.once("open", () => {
+  //   // DEPLOY EDERKEN KALDIR
+  //   // BOS VERI
+  const seedDB = require("./seeds");
+  seedDB();
+});
+
