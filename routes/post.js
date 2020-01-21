@@ -27,7 +27,7 @@ var upload = multer({ storage: storage });
 
 // BLOG EKLEME SAYFASINI AC
 router.get("/addpost", tools.currentBlogger, tools.Pictures, (req, res) => {
-  res.render("posts/addpost");
+  res.render("admin/addpost");
 });
 
 // BLOG EKLE                                  BU CALISIYOR AMA BURDA OLMAMASI GEREKIYOR
@@ -110,7 +110,7 @@ router.get("/:id/edit", tools.currentBlogger, tools.Pictures, (req, res) => {
         req.params.id +
           " kimligine sahip posta erisilmeye calisildi. Bu kimlige sahip post bulunamadi!"
       );
-    res.render("posts/editpost", { post: foundPost });
+    res.render("admin/editpost", { post: foundPost });
   });
 });
 

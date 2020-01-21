@@ -5,6 +5,7 @@ const express = require("express"),
   flash = require("connect-flash"),
   localStrategy = require("passport-local"),
   passport = require("passport"),
+  config = require("./config.json"),
   app = express();
 
 const tools = require("./middleware/tools");
@@ -32,18 +33,18 @@ const dbOptions = {
 var dbURL = process.env.BLOGDBURL || "mongodb://localhost/devblog";
 var svPort = process.env.PORT || 3000;
 //SET
-
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(express.static(__dirname + "/public", staticOptions));
 app.use(express.static(__dirname + "/views/scripts"));
 app.use(express.static(__dirname + "/node_modules"));
 app.set("view engine", "ejs");
+app.use(bodyParse.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(
   require("express-session")({
-    secret: "HELIGMAZEKA-ZEYNEL-DEVELOPERBLOG-1071",
+    secret: config.secret,
     resave: false,
     saveUninitialized: false
   })
@@ -52,6 +53,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
   res.locals.blogger = req.blogger;
   res.locals.currentUser = req.user;
@@ -59,10 +64,6 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   next();
 });
-
-// passport.use(new localStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 mongoose
   .connect(dbURL, dbOptions)
@@ -78,8 +79,8 @@ mongoose
   });
 
 mongoose.connection.once("open", () => {
-  //   // DEPLOY EDERKEN KALDIR
-  //   // BOS VERI
+  // DEPLOY EDERKEN KALDIR
+  // BOS VERI
   const seedDB = require("./seeds");
   seedDB();
 });

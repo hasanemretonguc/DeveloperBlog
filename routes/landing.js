@@ -27,7 +27,7 @@ router.get("/about/edit", tools.currentBlogger, (req, res) => {
 		if (err)
 			console.log("Hakkimdada bisi var!");
 		else {
-			res.render('aboutedit', { about: about });
+			res.render('admin/aboutedit', { about: about });
 		}
 	});
 });
@@ -46,7 +46,7 @@ router.post("/about", tools.currentBlogger, express.urlencoded({ extended: true 
 
 // #region Profil Duzenleme
 router.get("/profile/edit", tools.currentBlogger, tools.Pictures, (req, res) => {
-	res.render('profileedit');
+	res.render('admin/profileedit');
 });
 
 router.post("/profile", tools.currentBlogger, express.urlencoded({ extended: true }), (req, res) => {
